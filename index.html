@@ -35,7 +35,7 @@
       document.getElementById('save_button').onclick = () => {
         let user_input = document.getElementById('user_input').value;
         localStorage.setItem('user', user_input);
-        location.reload();
+        location.href = '/';
       };
 
       if ('serviceWorker' in navigator) {
