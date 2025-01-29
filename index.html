@@ -4,21 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="manifest.json">
-    <title>Twitter Lists</title>
+    <title>twlist</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="icon" href="icon512_maskable.png">
-  </head>
-  <body data-bs-theme="dark">
-    <div class="m-5">
-      <div class="m-3">
-        <input class="form-control" type="text" id="user_input" placeholder="id">
-      </div>
-      <div class="m-3 text-center">
-        <button class="btn btn-primary" id="save_button">save</button>
-      </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <script>
       let url = new URL(location.href);
       let clear = url.searchParams.has("clear");
@@ -32,12 +20,6 @@
         location.href = 'https://x.com/' + user + '/lists';
       }
 
-      document.getElementById('save_button').onclick = () => {
-        let user_input = document.getElementById('user_input').value;
-        localStorage.setItem('user', user_input);
-        location.href = '/';
-      };
-
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('./sw.js').then(registration => {
           console.log('ServiceWorker registration successful.');
@@ -45,6 +27,26 @@
           console.log('ServiceWorker registration failed.');
         });
       }
+
+      window.onload = () => {
+        document.getElementById('save_button').onclick = () => {
+          let user_input = document.getElementById('user_input').value;
+          localStorage.setItem('user', user_input);
+          location.href = '/';
+        };
+      }
     </script>
+  </head>
+  <body data-bs-theme="dark">
+    <div class="m-5">
+      <div class="m-3">
+        <input class="form-control" type="text" id="user_input" placeholder="id">
+      </div>
+      <div class="m-3 text-center">
+        <button class="btn btn-primary" id="save_button">save</button>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
   </body>
 </html>
